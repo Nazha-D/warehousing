@@ -1,0 +1,33 @@
+
+Pinned by Web Tech Knowledge
+@WebTechKnowledge
+3 months ago
+<IfModule mod_rewrite.c>
+
+Options +FollowSymLinks
+
+RewriteEngine On
+
+    RewriteBase /vita_erp_test/public/
+
+RewriteCond %{REQUEST_URI} !^/public/
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+
+
+
+
+
+
+RewriteRule ^(.*)$ /public/$1
+
+#RewriteRule ^ index.php [L]
+
+RewriteRule ^(/)?$ public/index.php [L]
+
+</IfModule>

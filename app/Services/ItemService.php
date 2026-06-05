@@ -10,6 +10,7 @@ use App\Models\Item;
 //use App\Models\Session;
 //use App\Models\PosTerminal;
 //use App\Models\Warehouse;
+use App\Models\StockMovement;
 use App\Models\SupplierCode;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -297,5 +298,11 @@ class ItemService
         if (!empty($itemGroups)) {
             $item->itemGroups()->syncWithoutDetaching($itemGroups);
         }
+    }
+    public function getAvailableStock(int $warehouseId, int $itemId): float
+    {
+        return StockMovement::where('warehouse_id', $warehouseId)
+            ->where('item_id', $itemId)
+            ->sum('quantity');
     }
 }

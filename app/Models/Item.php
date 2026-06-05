@@ -55,6 +55,7 @@ class Item extends Model
         'show_on_pos',
         'discontinued',
         'blocked',
+        'alert_level',
         'active',
     ];
 

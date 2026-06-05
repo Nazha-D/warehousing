@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Constants\TransferConstants;
+use App\Events\ItemStockChanged;
 use App\Models\Transfer;
 use App\Models\TransferItem;
 use App\Models\Warehouse;
@@ -128,6 +129,8 @@ class TransferService
                     'reference_type' => Transfer::class,
                     'reference_id'   => $line->id,
                 ]);
+                event(new ItemStockChanged($item->id, $srcWarehouse->id));
+
             }
 
             return $transfer->load('items');
